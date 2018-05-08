@@ -33,15 +33,23 @@ namespace Lab11
             MovieList.Add(new Movie("I follows", "Horror"));
             MovieList.Add(new Movie("In the dark", "Horror"));
 
+            string[] category = { "Scifi", "Horror", "Drama", "Animated", "Romance" };
+
             bool usercontinue = true;
+
             while (usercontinue == true)
             {
-                Console.WriteLine("What category are you interested in?");
-                string category = Console.ReadLine();
+                Console.WriteLine("What category are you interested in? (1)Scifi,(2)Horror, (3)Drama, (4)Animated, (5)Romance");
 
+
+                int Moviepick;
+                while(!int.TryParse(Console.ReadLine(), out Moviepick ) || Moviepick < 1 || Moviepick > 5)
+                {
+                    Console.WriteLine("Hey, thats not valid");
+                }
                 foreach (Movie movie in MovieList)
                 {
-                    if (category.ToLower() == movie.Category.ToLower())
+                    if (movie.Category.ToLower() == category[Moviepick - 1].ToLower())
                     {
                         movie.printInfo();
 
